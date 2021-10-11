@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('DJANGO_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['redhaus.ru']
+ALLOWED_HOSTS = ['127.0.0.1', 'redhaus.ru']
 
 
 # Application definition
