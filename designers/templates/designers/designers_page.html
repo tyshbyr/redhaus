@@ -1,0 +1,113 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+        <section class="page">
+    <div class="page__header">
+        <div class="container">
+            <ul class="page__header-breadcrumbs">
+                <li class="page__header-breadcrumbs-unit">
+                    <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+                </li>
+            </ul>
+            <h1 class="page__header-title"><span class="page__header-title-text">        <editor >
+
+
+                            Дизайнерам
+
+
+                    </editor>
+</span></h1>
+        </div>
+    </div>
+    <div class="page__content">
+        <div class="container">
+            <article class="page__content-text">
+                        <editor >
+                            <p>Фабрика Redhaus активно сотрудничает с дизайнерами и дизайнерскими бюро.</p>
+<p>Мы профессионально занимаемся производством мебели и предметов интерьера из ценных пород дерева. Выполняем заказы любой сложности по эскизам и чертежам заказчика в любом цветовом варианте отделки и в согласованные сроки. На фабрике работают профессиональные специалисты - краснодеревщики, имеется своя конструкторская группа (3D визуализаторы, конструкторы, технологи). Производство находящееся в городе Уфа, оснащено новейшим профессиональным оборудованием.</p>
+<p>Сложные проекты и требовательные заказчики нуждаются в синергии усилий профессионалов, мы готовы стать вашими надежными партнерами и сделать сотрудничество максимально эффективным.</p>
+<p>Работу по декору помещений можно увидеть в ресторанах <a href="http://vkusnoprojects.ru/indokitay/">"Индокитай"</a>&nbsp;и&nbsp;<a href="http://vkusnoprojects.ru/ugli/">"Угли".</a></p>
+<p>Приглашаем также &nbsp;посетить наш шоу-рум, где можно увидеть и оценить качество нашей мебели по адресу: {{ address }}.</p>
+<p>Подробности по тел.&nbsp;{{ phone_redhaus }}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+                    </editor>
+
+            </article>
+            <h2 class="page__subtitle">Примеры наших работ:</h2>
+            <ul class="page__catalog shown-on-desktop">
+                                    <li class="page__catalog-unit">
+                        <a href="/static/cache/designers_fb/images/upload/557eb1eddbcea.jpg" class="js-fb" rel="examples">
+                            <img src="/static/cache/designers_thumb/images/upload/557eb1eddbcea.jpg"/>
+                        </a>
+                                    <li class="page__catalog-unit">
+                        <a href="/static/cache/designers_fb/images/upload/557eb3876035e.png" class="js-fb" rel="examples">
+                            <img src="/static/cache/designers_thumb/images/upload/557eb3876035e.png"/>
+                        </a>
+                                    <li class="page__catalog-unit">
+                        <a href="/static/cache/designers_fb/images/upload/557eb2f761dce.jpg" class="js-fb" rel="examples">
+                            <img src="/static/cache/designers_thumb/images/upload/557eb2f761dce.jpg"/>
+                        </a>
+                                    <li class="page__catalog-unit">
+                        <a href="/static/cache/designers_fb/images/upload/557eb44257005.jpg" class="js-fb" rel="examples">
+                            <img src="/static/cache/designers_thumb/images/upload/557eb44257005.jpg"/>
+                        </a>
+                                    <li class="page__catalog-unit">
+                        <a href="/static/cache/designers_fb/images/upload/557eb474ab8c4.jpg" class="js-fb" rel="examples">
+                            <img src="/static/cache/designers_thumb/images/upload/557eb474ab8c4.jpg"/>
+                        </a>
+                                    <li class="page__catalog-unit">
+                        <a href="/static/cache/designers_fb/images/upload/557eb442575e9.jpg" class="js-fb" rel="examples">
+                            <img src="/static/cache/designers_thumb/images/upload/557eb442575e9.jpg"/>
+                        </a>
+                            </ul>
+            <div class="page__item-gallery hidden-on-desktop">
+                <ul class="page__item-gallery-layout designers-slider">
+                                            <li class="page__item-gallery-layout-unit">
+                            <img src="/static/cache/designers_fb/images/upload/557eb1eddbcea.jpg" alt=""/>
+                        </li>
+                                            <li class="page__item-gallery-layout-unit">
+                            <img src="/static/cache/designers_fb/images/upload/557eb3876035e.png" alt=""/>
+                        </li>
+                                            <li class="page__item-gallery-layout-unit">
+                            <img src="/static/cache/designers_fb/images/upload/557eb2f761dce.jpg" alt=""/>
+                        </li>
+                                            <li class="page__item-gallery-layout-unit">
+                            <img src="/static/cache/designers_fb/images/upload/557eb44257005.jpg" alt=""/>
+                        </li>
+                                            <li class="page__item-gallery-layout-unit">
+                            <img src="/static/cache/designers_fb/images/upload/557eb474ab8c4.jpg" alt=""/>
+                        </li>
+                                            <li class="page__item-gallery-layout-unit">
+                            <img src="/static/cache/designers_fb/images/upload/557eb442575e9.jpg" alt=""/>
+                        </li>
+                                    </ul>
+                <div class="slider__arrow page__item-gallery-arrow prev"></div>
+                <div class="slider__arrow page__item-gallery-arrow page__item-gallery-arrow-right next"></div>
+            </div>
+        </div>
+    </div>
+    <div class="page__content_wood">
+        <div class="container">
+            <h2 class="page__subtitle">Анкета сотрудничества</h2>
+            <form class="page__content-form form"  id="partner" method="post" action="{% url 'contacts:get_a_questionnaire' %}">
+                <label class="page__content-label label" for="partner_name">Ваше имя:
+                    <input class="input" type="text" id="partner_name" name="name" required=""/>
+                </label><label class="page__content-label label" for="partner_city">Город:
+                    <input class="input" type="text" id="partner_city" name="city" required=""/>
+                </label><label class="page__content-label label" for="partner_email">E-mail:
+                    <input class="input" type="text" id="partner_email" name="mail" required=""/>
+                </label><label class="page__content-label label" for="partner_phone">Телефон:
+                    <input class="input" type="text" id="partner_phone" name="phone" required=""/>
+                </label><label class="page__content-label label" for="partner_site">Адрес сайта:
+                    <input class="input" type="text" id="partner_site" name="site"/>
+                </label><label class="page__content-label label" for="partner_company">Название компании:
+                    <input class="input" type="text" id="partner_company" name="company"/>
+                </label><input class="btn btn_submit" type="submit" value="отправить">
+                <input type="hidden" name="template" value="designers"/>
+              {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</section>
+{% include 'catalog/footer.html' %}
+{% endblock %}

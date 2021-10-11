@@ -1,0 +1,75 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+            <section class="page">
+        <div class="page__header">
+            <div class="container">
+                <ul class="page__header-breadcrumbs">
+                    <li class="page__header-breadcrumbs-unit">
+                        <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+                    </li>
+                </ul>
+                <h1 class="page__header-title"><span class="page__header-title-text">Контактная информация</span></h1>
+            </div>
+        </div>
+        <div class="page__content">
+            <div class="container">
+                <h2 class="page__subtitle hidden-on-phone">Адреса и фотографии шоу-румов где можно посмотреть и купить мебель Redhaus</h2>
+
+                <div class="page__contacts">
+                    <div class="page__contacts-txt">
+                        <div class="page__contacts-txt-city ymaps-city">{{ ymaps_city }}</div>
+                        <ul class="page__contacts-txt-layout ymaps-addrlist">
+                                                        <li class="page__contacts-txt-layout-unit ymaps-item">
+                                <span class="page__contacts-txt-coords ymaps-coords">
+                                    <span class="ymaps-x">{{ ymaps_x }}</span>
+                                    <span class="ymaps-y">{{ ymaps_y }}</span>
+                                </span>
+                                <span class="page__contacts-txt-name ymaps-name">{{ ymaps_name }}</span>,
+                                <span class="page__contacts-txt-addr ymaps-addr">{{ ymaps_addr }}</span>,
+                                <span class="page__contacts-txt-phone">{{ phone }}</span>
+                                                    </ul>
+                    </div>
+                    <div class="page__contacts-map" id="map">
+                    </div>
+                    <div class="page__contacts-img hidden-on-phone js-albumlist">
+                                                                                                </div>
+                </div>
+            </div>
+        </div>
+        <div class="page__content_wood">
+            <div class="container">
+                <form class="page__contacts-form form " id="order" method="post" action="{% url 'contacts:get_request_for_call_back' %}">
+                    <h2 class="page__subtitle">Заказать обратный звонок</h2>
+                    <label class="page__contacts-label page__contacts-label_large label" for="order_name">Ваше имя:
+                        <input class="input" type="text" id="order_name" name="name" maxlength="35" required=""/>
+                    </label><label class="page__contacts-label page__contacts-label_large label" for="order_phone">Телефон:
+                        <input class="input" type="text" id="order_phone" name="phone" maxlength="35" required=""/>
+                    </label><label class="page__contacts-label page__contacts-label_large label" for="order_time">Удобное время звонка:
+                        <input class="input" type="text" id="order_time" name="time_to_call" maxlength="35" required=""/>
+                    </label><input class="btn btn_submit" type="submit" value="заказать">
+                    <input type="hidden" name="template" value="callback"/>
+                  {% csrf_token %}
+                </form>
+                <form class="page__contacts-form page__contacts-form_large form" id="order" method="post" action="{% url 'contacts:get_a_question' %}">
+                    <h2 class="page__subtitle">Задать вопрос</h2>
+                    <label class="page__contacts-label label" for="order_name">Ваше имя:
+                        <input class="input" type="text" id="order_name" name="name" maxlength="35" required=""/>
+                    </label>
+                    <label class="page__contacts-label label" for="order_mail">Ваш e-mail:
+                        <input class="input" type="text" id="order_mail" name="mail" maxlength="35" required=""/>
+                        <input class="input" type="hidden" name="phone" maxlength="35"/>
+                    </label>
+                    <label class="page__contacts-label page__contacts-label_large label" for="order_comment">Ваш вопрос:
+                        <textarea class="input input_txt" id="order_comment" name="question" cols="4" required=""></textarea>
+                    </label>
+                    <input class="btn btn_submit" type="submit" value="отправить">
+                    <input type="hidden" name="template" value="question"/>
+                  {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </section>
+    {% include 'catalog/footer.html' %}
+    {% endblock %}

@@ -1,0 +1,141 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+<section class="page">
+<div class="page__header">
+<div class="container">
+    <ul class="page__header-breadcrumbs">
+        <li class="page__header-breadcrumbs-unit">
+            <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+        </li>
+        <li class="page__header-breadcrumbs-unit">
+            <a class="page__header-breadcrumbs-link" href="/catalog/">Каталог</a>
+        </li>
+        <li class="page__header-breadcrumbs-unit">
+            <a class="page__header-breadcrumbs-link" href="{% if is_product %}{% url 'catalog:products_page' category.slug %}{% else %}{% url 'catalog:kits_page' category.slug %}{% endif %}">{{ object.category }}</a>
+        </li>
+    </ul>
+    <h1 class="page__header-title"><span class="page__header-title-text">        <editor>
+                {{ object.title }}
+        </editor>
+</span></h1>
+                        <div class="page__header-subtitle">{% if object.collection %}{{ object.collection }}{% endif %}</div>
+                </div>
+</div>
+<div class="page__content">
+<div class="container">
+    <div class="page__item">
+        <div class="page__content-text">
+                    <editor >
+                <p style="text-align: center;"><span>{% if object.description %}{{ object.description }}{% endif %}</span></p>
+        </editor>
+
+        </div>
+                                <div class="page__item-gallery">
+                <ul class="page__item-gallery-layout gallery">
+
+                  {% for slide in slider_list %}
+                                                        <li class="page__item-gallery-layout-unit">
+                            <img src="{{ slide.image.url }}" alt=""/>
+                        </li>
+                  {% endfor %}
+
+
+                                                </ul>
+                <div class="slider__arrow page__item-gallery-arrow prev"></div>
+                <div class="slider__arrow page__item-gallery-arrow page__item-gallery-arrow-right next"></div>
+            </div>
+                            <div class="page__item-info">
+        {% if object.price %}                    
+            <div class="page__item-price rur">
+                <editor >
+                    {{ object.price }}
+                </editor>
+            </div>
+        {% endif %}
+        </div>
+        <div class="page__item-info">
+                    <editor >
+<div class="page__item-string">{% if object.info %}{{ object.info }}{% endif %}</div>
+        </editor>
+
+        </div>
+        {% if color_list %}
+                                <div class="page__item-info">
+                <h3 class="page__subtitle">Рекомендуемые цвета:</h3>
+                <ul class="page__item-colorlist">
+
+                  {% for color in color_list %}
+                    {% if color.recommended %}
+                              <li class="page__item-colorlist-unit">
+                                <div class="page__item-colorlist-img"><img src="{{ color.image.url }}" alt="{{ color.title }}"/></div>
+                                <div class="page__item-colorlist-name"><span>{{ color.title }}</span></div>
+                                <div class="page__item-colorlist-render"><img src="{{ color.render.url }}" alt="{{ color.render_title }}"/></div>
+                    {% endif %}
+                  {% endfor %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                <a class="page__item-allcolors js-fb" href="#modal-colors">Нажмите, чтобы подобрать цвет</a>
+            </div>
+        {% endif %}  
+                        </div>
+</div>
+</div>
+<div class="page__content_wood">
+<div class="container">
+    <button class="btn btn_link js-fb" href="#modal-question">задать вопрос</button>
+    <button class="btn btn_submit js-fb" href="#modal-location">где купить</button>
+</div>
+</div>
+{% if is_product %}
+    {% if object.kit %}
+        <div class="page__content">
+    <div class="container">
+        <h2 class="page__subtitle">Входит в комплект <a class="page__link" href="{% url 'catalog:kit_page' kit.slug %}">«{{ kit.title }}»</a>
+            вместе с:</h2>
+        <ul class="page__catalog page__item">
+          {% for other_object in other_objects_list %}
+              {% if other_object.slug != object.slug %}
+                      <li class="page__catalog-unit">
+                        <a class="page__catalog-item" href="{% url 'catalog:product_page' other_object.slug %}">
+                            <div class="page__catalog-item-img"><img src="{{ other_object.thumbnail.url }}" width="304" height="228"></div>
+                            <h3 class="page__catalog-item-title">{{ other_object.title }}</h3>
+                            <div class="page__catalog-item-dscr">
+                                {{ other_object.short_description }}
+                                <div class="page__catalog-item-price">от {{ other_object.price }}</div>
+                            </div>
+                        </a>
+              {% endif %}
+          {% endfor %}
+    {% endif %}
+        </ul>
+    </div>
+</div>
+{% else %}
+<div class="page__content">
+   <div class="container">
+       <h2 class="page__subtitle">В комплект входит:</h2>
+       <ul class="page__catalog page__item">
+         {% for other_object in other_objects_list %}
+                     <li class="page__catalog-unit">
+                       <a class="page__catalog-item" href="{% url 'catalog:product_page' other_object.slug %}">
+                           <div class="page__catalog-item-img"><img src="{{ other_object.thumbnail.url }}" width="304" height="228"></div>
+                           <h3 class="page__catalog-item-title">{{ other_object.title }}</h3>
+                           <div class="page__catalog-item-dscr">
+                               {% if other_object.short_description %}{{ other_object.short_description }}{% endif %}
+                               <div class="page__catalog-item-price">{% if other_object.price %}{{ other_object.price }}{% endif %}</div>
+                           </div>
+                       </a>
+         {% endfor %}
+       </ul>
+   </div>
+</div>
+{% endif %}
+</section>
+
+
+{% include 'catalog/modal_colors.html' %}
+
+{% include 'catalog/modal.html' %}
+{% include 'catalog/footer.html' %}
+{% endblock %}

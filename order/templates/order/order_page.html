@@ -1,0 +1,66 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+        <section class="page">
+    <div class="page__header">
+        <div class="container">
+            <ul class="page__header-breadcrumbs">
+                <li class="page__header-breadcrumbs-unit">
+                    <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+                </li>
+            </ul>
+            <h1 class="page__header-title"><span class="page__header-title-text">        <editor >
+                            Заказать
+                    </editor>
+</span></h1>
+        </div>
+    </div>
+    <div class="page__content">
+        <div class="container">
+            <article class="page__content-text">
+                        <editor >
+                            <h1>Дизайнерская мебель на заказ в Уфе</h1>
+<p>&nbsp;</p>
+<p>Не нашли в наших каталогах мебель своей мечты?&nbsp;<span>Компания Редхаус изготовит мебель на заказ согласно Вашим индивидуальным предпочтениям, а также уникальные элементы декора для спален, кухонь, гостиных, кабинетов, и т.д.</span></p>
+<p>Мы профессионально занимаемся производством мебели и предметов интерьера из ценных пород дерева. Выполняем заказы любой сложности по эскизам и чертежам заказчика в любом цветовом варианте отделки и в согласованные сроки. На фабрике работают профессиональные специалисты - краснодеревщики, имеется своя конструкторская группа (3D визуализаторы, конструкторы, технологи). Производство находящееся в городе Уфе, оснащено новейшим профессиональным оборудованием.</p>
+<p>Приглашаем посетить наш шоу-рум, где можно увидеть и оценить качество наших работ в г. {{ ymaps_city }}. Подробности по тел.&nbsp;{{ phone_redhaus }}&nbsp; &nbsp;&nbsp;</p>
+<h2>Преимущества заказа мебели в Redhaus:</h2>
+<ul>
+<li>Используем только лучшие деревянные заготовки из дуба;</li>
+<li>Делаем мебель в любом стиле: от классики до hi-tech;</li>
+<li>Для производства используется высокоточное австрийское оборудование;</li>
+<li>Гарантируем высокую надёжность и экологичность продукции;</li>
+<li>Доставим мебель в Ваш дом и осуществим её сборку.</li>
+</ul>
+<p>Мы готовы выполнить любое ваше пожелание и изготовить на заказ кровать, стол, шкаф и любую другую деталь интерьера из дерева с оригинальными узорами, формами и размерами.</p>
+<p>Дизайнеры Редхаус могут работать как с Вашим эскизом, так и создать дизайн-концепцию самостоятельно, учитывая пожелания или концепцию уже имеющегося интерьера помещения, для сохранения гармоничной атмосферы.</p>
+<p>Далее мы предложим Вам визуализированные 3D-модели будущей мебели и после Вашего одобрения запустим процесс производства.</p>
+<p>Также Вы можете <a href="/">купить готовую мебель</a> из нашего каталога.</p>
+<p>По всем вопросам звоните по телефону:&nbsp;<span>&nbsp;{{ phone_redhaus }}</span><span>&nbsp;</span></p>
+<p>&nbsp;</p>
+                    </editor>
+
+            </article>
+            <img class="page__content-order-img" src="/static/img/example4.jpg"/>
+        </div>
+    </div>
+    <div class="page__content_wood">
+        <div class="container">
+            <h2 class="page__subtitle">Связаться с нами</h2>
+            <form class="page__content-form form" id="order" method="post" action="{% url 'contacts:get_order' %}">
+                <label class="page__content-label label" for="order_name">Ваше имя:
+                    <input class="input" type="text" id="order_name" name="name" maxlength="35" required=""/>
+                </label><label class="page__content-label label" for="order_phone">Номер телефона:
+                    <input class="input" type="text" id="order_phone" name="phone" maxlength="35" required=""/>
+                </label><label class="page__content-label page__content-label_large label" for="order_comment">Комментарий:
+                    <textarea class="input input_txt" id="order_comment" name="comment" cols="5" required=""></textarea>
+                </label><input class="btn btn_submit" type="submit" value="отправить">
+                <input type="hidden" name="template" value="order"/>
+                  {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</section>
+{% include 'catalog/footer.html' %}
+{% endblock %}

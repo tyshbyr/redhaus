@@ -1,0 +1,50 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+            <section class="page">
+        <div class="page__header">
+            <div class="container">
+                <ul class="page__header-breadcrumbs">
+                    <li class="page__header-breadcrumbs-unit">
+                        <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+                    </li>
+                </ul>
+                <h1 class="page__header-title"><span class="page__header-title-text">{% if not error %}Спасибо за обращение
+                  {% else %}Ошибка{% endif %}</span></h1>
+            </div>
+        </div>
+
+
+
+    {% if form_id == 'callback' %}
+    <h1 class="timeline__title">{{ name }}, спасибо за заявку, мы перезвоним вам по номеру: {{ phone }} в {{ time_to_call }}</h1>
+    {% endif %}
+
+    {% if form_id == 'question' %}
+    <p style="text-align: center; margin-bottom: 10px">Ваш вопрос: {{ question }}</p>
+    <h1 class="timeline__title">{{ name }}, спасибо за вопрос, мы ответим вам {% if toggle == 'phone' %}по номеру:
+      {{ contact }}{% endif %}{% if toggle == 'mail' %}на почтовый ящик: {{ contact }}{% endif %}</h1>
+    {% endif %}
+
+    {% if form_id == 'order' %}
+    <p style="text-align: center; margin-bottom: 10px">Ваш комментарий: {{ comment }}</p>
+    <h1 class="timeline__title">{{ name }}, спасибо за комментарий, мы ответим вам по телефону: {{ phone }}</h1>
+    {% endif %}
+
+    {% if form_id == 'cooperation' %}
+    <h1 class="timeline__title">{{ name }}, спасибо за заявку, мы свяжемся с вами в ближайшее время.</h1>
+    {% endif %}
+
+    {% if error == 'error' %}
+    <h1 class="timeline__title">Что-то пошло не так, попробуйте еще раз.</h1>
+    <p style="text-align: center; margin-top: 10px">
+    <a href = "javascript:history.back()">Вернуться к заполнению формы ⇒</a>
+    </p>
+    {% endif %}
+
+
+
+
+{% include 'catalog/footer.html' %}
+{% endblock %}

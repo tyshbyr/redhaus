@@ -1,0 +1,46 @@
+<div class="modal" id="modal-question">
+<h5 class="page__subtitle">Задать вопрос</h5>
+<p>Оставьте свои контактные данные и интересующий вас вопрос, и мы ответим вам не позднее двух дней.</p>
+<div class="modal__buttons">
+<button class="modal__buttons-item active js-toggle" data-target="question" id="toggle_phone">По телефону</button>
+<button class="modal__buttons-item js-toggle" data-target="question" id="toggle_mail">По e-mail</button>
+</div>
+<form class="modal__form form" id="question" method="post"  action="{% url 'contacts:get_a_question' %}">
+<label class="modal__label label" for="question_name">Ваше имя:
+    <input class="input" type="text" id="question_name" name="name" maxlength="35" required=""/>
+</label><label class="modal__label label toggle" for="question_phone" data-toggle-class="hidden">Ваш телефон:
+    <input class="input" type="text" id="question_phone" name="phone" maxlength="35" required=""/>
+</label><label class="modal__label label toggle hidden" for="question_mail" data-toggle-class="hidden">Ваш e-mail:
+    <input class="input" type="text" id="question_mail" name="mail" maxlength="35"/>
+</label><label class="modal__label modal__label_large label" for="question_comment">Ваш вопрос:
+    <textarea class="input input_txt" id="question_comment" name="question" cols="4" required=""></textarea>
+</label><input class="btn btn_submit" type="submit" value="отправить">
+<input type="hidden" name="template" value="catquestion"/>
+{% csrf_token %}
+</form>
+</div>
+
+<div class="modal modal_large toggle" id="modal-location" data-toggle-class="modal_large">
+<h5 class="page__subtitle">Где купить?</h5>
+<p>Нашу мебель можно посмотреть и приобрести в наших <br>шоурумах и специализированных магазинах.</p>
+<div class="modal__buttons">
+<button class="modal__buttons-item active js-toggle" data-target="modal-location">На карте
+</button><button class="modal__buttons-item js-toggle" data-target="modal-location">Списком</button>
+</div>
+<div class="page__contacts toggle" id="contacts" data-toggle-class="page__contacts_auto-heigh">
+<div class="page__contacts-map page__contacts-map_modal toggle" id="map" data-toggle-class="hidden">
+</div>
+<div class="page__contacts-txt page__contacts-txt_modal toggle" data-toggle-class="page__contacts-txt_modal-full">
+    <div class="page__contacts-txt-city ymaps-city">{{ ymaps_city }}</div>
+    <ul class="page__contacts-txt-layout ymaps-addrlist">
+                            <li class="page__contacts-txt-layout-unit ymaps-item">
+            <span class="page__contacts-txt-coords ymaps-coords">
+                <span class="ymaps-x">{{ ymaps_x }}</span>
+                <span class="ymaps-y">{{ ymaps_y }}</span>
+            </span>
+            <span class="page__contacts-txt-name ymaps-name">{{ ymaps_name }}</span>,
+            <span class="page__contacts-txt-addr ymaps-addr">{{ ymaps_addr }}</span>
+                            </ul>
+</div>
+</div>
+</div>

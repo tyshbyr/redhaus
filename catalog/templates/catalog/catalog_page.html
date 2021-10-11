@@ -1,0 +1,69 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+<section class="page">
+   <div class="page__header">
+       <div class="container">
+           <ul class="page__header-breadcrumbs">
+               <li class="page__header-breadcrumbs-unit">
+                   <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+               </li>
+           </ul>
+           <h1 class="page__header-title"><span class="page__header-title-text">Каталог мебели Redhaus</span></h1>
+       </div>
+   </div>
+
+   <div class="page__content">
+       <div class="container">
+           <ul class="page__catalog">
+             {% for category in kits_list %}
+                                   <li class="page__catalog-unit">
+                       <a class="page__catalog-item" href="{% url 'catalog:kits_page' category.slug %}">
+                           <div class="page__catalog-item-img"><img src="{{ category.thumbnail.url }}" width="304" height="228"></div>
+                           <h3 class="page__catalog-item-title">{{ category.title }}</h3>
+                           <div class="page__catalog-item-dscr">
+                               {{ category.short_description }}
+                               <div class="page__catalog-item-price">{{ category.price }}</div>
+                           </div>
+                       </a>
+              {% endfor %}
+              {% for category in products_list %}
+                                    <li class="page__catalog-unit">
+                        <a class="page__catalog-item" href="{% url 'catalog:products_page' category.slug %}">
+                            <div class="page__catalog-item-img"><img src="{{ category.thumbnail.url }}" width="304" height="228"></div>
+                            <h3 class="page__catalog-item-title">{{ category.title }}</h3>
+                            <div class="page__catalog-item-dscr">
+                                {{ category.short_description }}
+                                <div class="page__catalog-item-price">{{ category.price }}</div>
+                            </div>
+                        </a>
+               {% endfor %}
+                          </ul>
+       </div>
+   </div>
+   <div class="page__content_separator"></div>
+   <div class="page__content">
+       <div class="container">
+           <div class="page__catalog-order">
+               <div class="page__catalog-order-img">
+                    <img class="right" src="/static/img/draft.jpg" alt=""/>
+               </div>
+                           <div
+               >
+           <h2 class="page__catalog-order-title">
+                   Изготовление мебели<br>по вашим чертежам<br>и эскизам
+               </h2>
+               <div class="page__catalog-order-txt">
+                   Не нашли в наших каталогах мебель своей мечты? Мы готовы изготовить по вашему индивидуальному
+                   заказу мебель и уникальные элементы декора для спален, кухонь, гостиных, кабинетов, и так далее.
+               </div>
+       </div>
+
+               <a class="btn page__catalog-order-btn" href="/order">подробнее</a>
+           </div>
+       </div>
+   </div>
+</section>
+{% include 'catalog/footer.html' %}
+{% endblock %}

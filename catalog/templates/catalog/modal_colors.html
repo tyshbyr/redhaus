@@ -1,0 +1,18 @@
+<div class="modal modal_full" id="modal-colors">
+<h5 class="page__subtitle">Все цвета</h5>
+
+<ul class="page__item-colorlist">
+  {% for color in color_list %}
+            <li class="page__item-colorlist-unit">
+    <a class="page__item-colorlist-img js-img {% if forloop.first %} active {% endif %}" href="{{ color.render.url }}" data-target="modal-colors-render" data-name="{{ color.title }}">
+        <img src="{{ color.image.url }}" alt=""/>
+    </a>
+  {% endfor %}
+</ul>
+<div class="modal__render" id="modal-colors-render">
+<h6 class="page__item-color-title">{% for color in color_list %}{% if forloop.first %}{{ color.title }}{% endif %}{% endfor %}</h6>
+
+<img src="{% for color in color_list %}{% if forloop.first %}{{ color.render.url }}{% endif %}{% endfor %}" alt=""/>
+
+</div>
+</div>

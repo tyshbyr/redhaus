@@ -1,0 +1,358 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+        <div class="navbar">
+        <div class="container">
+            <a href="/" class="navbar__logo" title="Redhaus"></a>
+            <nav class="menu menu_navbar">
+                <ul class="menu_navbar__layout">
+                    <li class="menu_navbar__layout-unit {% if location == 'home' %}active{% endif %}">
+                        <a href="/#info" class="menu__item scroll" data-scrollto="info">О компании</a>
+                    </li>
+                    <li class="menu_navbar__layout-unit">
+                        <a href="/catalog/" class="menu__item">Каталог</a>
+                    </li>
+                    <li class="menu_navbar__layout-unit">
+                        <a href="/news/" class="menu__item">Портфолио</a>
+                    </li>
+                    <li class="menu_navbar__layout-unit">
+                        <a href="/designers/" class="menu__item">Дизайнерам</a>
+                    </li>
+                    <li class="menu_navbar__layout-unit">
+                        <a href="/contacts/" class="menu__item">Контакты</a>
+                    </li>
+                    <li class="menu_navbar__layout-unit">
+                        <div class="menu__item menu__item_phone">
+                                        <div
+                >
+            <span>{{ phone }}</span>&nbsp;
+        </div>
+                                                    </div>
+                    </li>
+                </ul>
+            </nav><!-- .menu -->
+        </div>
+    </div>
+    <header class="header header_main">
+        <div class="container">
+            <a href="/" class="header__logo header__logo_main" title="Redhaus"></a>
+            <nav class="menu menu_header menu_header_main">
+                <ul class="menu_header__layout">
+                    <li class="menu_header__layout-unit {% if location == 'home' %}active{% endif %}">
+                        <a href="/#info" class="menu__item scroll" data-scrollto="info">О компании</a>
+                    </li>
+                    <li class="menu_header__layout-unit">
+                        <a href="/catalog/" class="menu__item">Каталог</a>
+                    </li>
+                    <li class="menu_header__layout-unit">
+                        <a href="/news/" class="menu__item">Портфолио</a>
+                    </li>
+                    <li class="menu_header__layout-unit">
+                        <a href="/designers/" class="menu__item">Дизайнерам</a>
+                    </li>
+                    <li class="menu_header__layout-unit">
+                        <a href="/contacts/" class="menu__item">Контакты</a>
+                    </li>
+                    <li class="menu_header__layout-unit">
+                        <div class="menu__item menu__item_phone">
+                                        <div
+                >
+            <span>{{ phone_redhaus }}</span>&nbsp;
+        </div>
+                                                    </div>
+                        <div class="menu__item menu__item_addr menu__item_addr_top">
+                            {{ address }}
+                        </div>
+                    </li>
+                </ul>
+            </nav><!-- .menu -->
+            <div class="header__title">
+                            <div>
+            <h1 class="header__title-main">Надежно и долговечно</h1>
+                <h2 class="header__title-dscr">Экологичная дизайнерская мебель из ценных пород дерева</h2><h2 class="header__title-dscr">от производителя в Уфе</h2>
+        </div>
+                            </div>
+            <div class="buttons buttons_header">
+                <a class="btn btn_cat" href="/catalog/">мебель из каталога</a> или
+                <a class="buttons__order" href="/order/">мебель на заказ</a>
+            </div>
+            <div class="header__scroll scroll" data-scrollto="info"></div>
+        </div>
+    </header>
+        <main class="main">
+        <div class="teaser">
+            <div class="container container_narrow">
+                <div class="info" id="info">
+                                <div
+                >
+            <p><span class="info__name">Redhaus</span> &mdash; это мебель из натурального дуба, благородство и красота живого природного материала, создающие теплую приятную атмосферу в вашем доме. Исключительная долговечность и надежность. Величие и энергетика массива дерева, создаваемого природой более 150 лет. Это мебель, которую вы не захотите поменять.</p>
+        </div>
+
+                                        <div class="buttons info__buttons">
+                        <a class="btn btn_submit info__button" href="/production/">о производстве</a>
+                    </div>
+                </div>
+                <div class="info">
+                    <ul class="info__layout">
+                        <li class="info__layout-unit">
+                            <img src="/static/img/portfolio1.jpg" alt=""/>
+                        <li class="info__layout-unit">
+                            <img src="/static/img/portfolio2.jpg" alt=""/>
+                        <li class="info__layout-unit">
+                            <img src="/static/img/portfolio3.jpg" alt=""/>
+                        <li class="info__layout-unit">
+                            <img src="/static/img/portfolio4.jpg" alt=""/>
+                        <li class="info__layout-unit">
+                            <img src="/static/img/portfolio5.jpg" alt=""/>
+                        <li class="info__layout-unit">
+                            <img src="/static/img/portfolio6.jpg" alt=""/>
+                    </ul>
+                    <div class="buttons info__buttons">
+                        <a class="btn btn_submit info__button" href="/news/">портфолио</a>
+                    </div>
+                </div>
+                                <div class="slider" id="slider-main">
+                    <ul class="slider__layout">
+                                {% for kit in kit_list %}
+                                                    <li class="slider__layout-unit" data-title="{{ kit.title }}" data-dscr="{{ kit.short_description }}" data-price="{{ kit.price }}" data-url="#">
+                                <a href="{% url 'catalog:kit_page' kit.slug %}">
+                                    <img src="{{ kit.thumbnail.url }}" alt="{{ kit.title }}"/>
+                                </a>
+                                {% endfor %}
+                    </ul>
+                    <h4 class="slider__title"><a href=""></a></h4>
+                    <div class="slider__dscr"></div>
+                    <div class="slider__price rur"></div>
+                    <div class="slider__arrow slider__arrow_left prev"></div>
+                    <div class="slider__arrow slider__arrow_right next"></div>
+                </div>
+                            </div>
+        </div> <!-- .teaser -->
+        <div class="vantages">
+            <div class="container">
+                <h2 class="vantages__title">
+                    Преимущества <strong class="vantages__title_red">Redhaus</strong>
+                </h2>
+                <ul class="vantages__layout">
+                    <li class="vantages__layout-unit">
+                        <div class="vantages__item">
+                            <img class="vantages__item-img" src="/static/img/vantages1.png"/>
+                            <h3 class="vantages__item-title">Экологичность и надежность</h3>
+                            <div class="vantages__item-txt">
+                                Натуральное дерево полностью безопасно для здоровья, в отличие от склеенных
+                                древесных стружек в панелях МДФ, допускающих опасные испарения.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="vantages__layout-unit">
+                        <div class="vantages__item">
+                            <img class="vantages__item-img" src="/static/img/vantages2.png"/>
+                            <h3 class="vantages__item-title">Вековая прочность дуба</h3>
+                            <div class="vantages__item-txt">
+                                Отборная дубовая древесина это превосходный материал для производства мебели
+                                благодаря своей прочности, твердости и влагостойкости.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="vantages__layout-unit">
+                        <div class="vantages__item">
+                            <img class="vantages__item-img" src="/static/img/vantages3.png"/>
+                            <h3 class="vantages__item-title">Дизайн и комфорт</h3>
+                            <div class="vantages__item-txt">
+                                Все наши изделия проходят тестына эргономичность и надежность. Разработка новых
+                                моделей всегда учитывает потребительский спроси мировые тренды мебельной индустрии.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="vantages__layout-unit">
+                        <div class="vantages__item">
+                            <img class="vantages__item-img" src="/static/img/vantages4.png"/>
+                            <h3 class="vantages__item-title">Качественная фурнитура</h3>
+                            <div class="vantages__item-txt">
+                                Использование высококачественной фурнитуры от лучших поставщиков гарантирует
+                                долгий срок службы наших изделий.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="vantages__layout-unit">
+                        <div class="vantages__item">
+                            <img class="vantages__item-img" src="/static/img/vantages5.png"/>
+                            <h3 class="vantages__item-title">Изготовление мебели по индивидуальным заказам</h3>
+                            <div class="vantages__item-txt">
+                                Мы также проектируем и изготовливаем мебель и элементы декора по индивидуальным
+                                заказам, как от частных заказчиков, так и от профессиональных дизайнеров и
+                                дизайнерских бюро.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="vantages__layout-unit">
+                        <div class="vantages__item">
+                            <img class="vantages__item-img" src="/static/img/vantages6.png"/>
+                            <h3 class="vantages__item-title">Широкая палитра окрасов на выбор</h3>
+                            <div class="vantages__item-txt">
+                                Не ограничивайте свою фантазию, подбирайте мебель под свой интерьер пользуясь
+                                нашей разнообразнойцветовой палитрой.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- .vantages -->
+        <div class="timeline">
+            <div class="container">
+                <h2 class="timeline__title">REDHAUS – как это сделано?</h2>
+                <ul class="timeline__layout">
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline1.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Рост дуба в течении 150–200 лет</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline2.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Отбор самой лучшей древесины дуба высшего сорта</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item timeline__item_long">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline3.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Просушка древесины</div>
+                                <div class="timeline__item-dscr">
+                                    Сушка древесины в мягком режиме течении трех месяцевв специальной программируемой
+                                    сушилке KATRES (Чехия)до 8-10% остаточной влажности. Эти параметры массива дерева
+                                    являются эталонными для мебельного производства.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item timeline__item_long">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline4.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Мебельный инжиниринг</div>
+                                <div class="timeline__item-dscr">
+                                    Разработка конструкций, расчет узлов и деталей, анализ эргономичности и
+                                    технологичности, 3D визуализация изделий.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item timeline__item_long">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline5.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Сборка мебели</div>
+                                <div class="timeline__item-dscr">
+                                    Распил и присадка мебельных элементов, просверливание отверстий под фурнитуру
+                                    и крепеж, “сухая сборка”, шлифовка неровностей, осмотр изделия и проверка на
+                                    дефекты.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item timeline__item_long">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline6.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Работа с деталями</div>
+                                <div class="timeline__item-dscr">
+                                    Художественная резьба по дереву, выпиливание и подгонка сложных декоративных
+                                    элементов.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item timeline__item_long">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline7.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title">Последние штрихи</div>
+                                <div class="timeline__item-dscr">
+                                    Покраска деталей, нанесение потали (сусального золота) - золочение резных
+                                    элементов декора, нанесение лака, полировка. На некоторые элементы нашей
+                                    мебели может наноситься до 16 слоев финишной отделки.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline__layout-unit">
+                        <div class="timeline__item timeline__item_last">
+                            <div class="timeline__item-slide">
+                                <img src="/static/img/timeline8.png" alt=""/>
+                            </div>
+                            <div class="timeline__item-txt">
+                                <div class="timeline__item-title timeline__item_last-title">Финиш</div>
+                                <div class="timeline__item-dscr timeline__item_last-dscr">
+                                    Отправка готового изделия заказчику. Доставка и монтаж в пределах г. Уфы
+                                    входят в стоимость изделия.
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- .timeline -->
+    </main>
+    <div class="push"></div>
+</div>
+    <footer class="footer footer_main">
+        <div class="container container_footer">
+            <div class="buttons buttons_footer">
+                <a class="btn btn_cat" href="/catalog/">мебель из каталога</a> или
+                <a class="buttons__order" href="/order/">мебель на заказ</a>
+            </div>
+            <nav class="menu menu_footer">
+                <ul class="menu_footer__layout">
+                    <li class="menu_footer__layout-unit active">
+                        <a href="/#info" class="menu__item scroll {% if location == 'home' %}tap-active{% endif %}" data-scrollto="info">О компании</a>
+                    </li>
+                    <li class="menu_footer__layout-unit">
+                        <a href="/catalog/" class="menu__item">Каталог</a>
+                    </li>
+                    <li class="menu_footer__layout-unit">
+                        <a href="/news/" class="menu__item">Портфолио</a>
+                    </li>
+                    <li class="menu_footer__layout-unit">
+                        <a href="/designers/" class="menu__item">Дизайнерам</a>
+                    </li>
+                    <li class="menu_footer__layout-unit">
+                        <a href="/contacts/" class="menu__item">Контакты</a>
+                    </li>
+                    <li class="menu_footer__layout-unit">
+                        <div class="menu__item menu__item_phone">
+                                        <div>
+            <span>{{ phone_redhaus }}</span>&nbsp;
+        </div>
+                        </div>
+                                                <div class="menu__item menu__item_addr">
+                            {{ address }}
+                        </div>
+                    </li>
+                </ul>
+            </nav><!-- .menu -->
+            <a href="/" class="footer__logo" title="Redhaus"></a>
+            <div class="footer__copyright-redhaus">{{ copyright }}</div>
+            <a href="#" target="_blank" class="" title="Создание сайтов"></a>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,0 +1,34 @@
+<div class="push"></div>
+</div>
+<footer class="footer">
+     <div class="container container_footer">
+         <nav class="menu menu_footer">
+             <ul class="menu_footer__layout">
+                 <li class="menu_footer__layout-unit {% if location == 'home' %}active{% endif %}">
+                     <a href="/#info" class="menu__item">О компании</a>
+                 </li>
+                 <li class="menu_footer__layout-unit {% if location == 'catalog' %}active{% endif %}">
+                     <a href="/catalog/" class="menu__item">Каталог</a>
+                 </li>
+                 <li class="menu_footer__layout-unit {% if location == 'portfolio' %}active{% endif %}">
+                     <a href="/news/" class="menu__item">Портфолио</a>
+                 </li>
+                 <li class="menu_footer__layout-unit  {% if location == 'designers' %}active{% endif %}">
+                     <a href="/designers/" class="menu__item">Дизайнерам</a>
+                 </li>
+                 <li class="menu_footer__layout-unit {% if location == 'contacts' %}active{% endif %}">
+                     <a href="/contacts/" class="menu__item">Контакты</a>
+                 </li>
+                 <li class="menu_footer__layout-unit">
+                     <div class="menu__item menu__item_phone">
+                        <div><span>{{ phone_redhaus }}</span>&nbsp;</div>
+                     </div>
+                  </li>
+             </ul>
+         </nav>
+         <!-- .menu -->
+         <a href="/" class="footer__logo" title="Redhaus"></a>
+         <div class="footer__copyright-redhaus">{{ copyright }}</div>
+         <a href="#" target="_blank" class="" title="Создание сайтов"></a>
+     </div>
+ </footer>

@@ -1,0 +1,40 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+        <section class="page">
+    <div class="page__header">
+        <div class="container">
+            <ul class="page__header-breadcrumbs">
+                <li class="page__header-breadcrumbs-unit">
+                    <a class="page__header-breadcrumbs-link" href="/">Главная</a>
+                </li>
+            </ul>
+            <h1 class="page__header-title"><span class="page__header-title-text">Портфолио</span></h1>
+        </div>
+    </div>
+    <div class="page__content">
+        <div class="container">
+            <ul class="page__news">
+              {% for project in project_list %}
+                                    <li class="page__news-unit">
+                        <a class="page__news-img" href="{% url 'portfolio:project_page' project.slug %}">
+                            <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}"/>
+                        </a>
+                        <div class="page__news-date">{{ project.date|date:'j M Y' }}</div>
+                        <a class="page__news-title" href="{% url 'portfolio:project_page' project.slug %}">{{ project.title }}</a>
+                        <div class="page__news-txt">
+                                    <editor >
+                            <p>{{ project.short_description }}</p>
+                    </editor>
+                        </div>
+              {% endfor %}
+
+                            </ul>
+
+
+        </div>
+    </div>
+</section>
+{% include 'catalog/footer.html' %}
+{% endblock %}

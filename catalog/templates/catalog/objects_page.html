@@ -1,0 +1,70 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'catalog/header.html' %}
+<section class="page">
+		<div class="page__header">
+			<div class="container">
+
+				<ul class="page__header-breadcrumbs">
+					<li class="page__header-breadcrumbs-unit">
+						<a class="page__header-breadcrumbs-link" href="/">Главная</a>
+					</li>
+					<li class="page__header-breadcrumbs-unit">
+						<a class="page__header-breadcrumbs-link" href="/catalog/">Каталог</a>
+					</li>
+				</ul>
+
+				<h1 class="page__header-title"><span class="page__header-title-text">{{ category.title }}</span></h1>
+				<div class="page__header-select">
+					<ul class="page__header-select-layout">
+													<li class="page__header-select-layout-unit">
+								<a class="page__header-select-link" href="?collection='all'">Все коллекции</a>
+							</li>
+							{% for object_collection in object_collection_list_filter %}
+								{% if object_collection.collection %}
+									<li class="page__header-select-layout-unit">
+										<a class="page__header-select-link" href="?collection={{ object_collection.collection_id }}">{{ object_collection.collection }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+				</ul>
+				</div>
+			</div>
+		</div>
+		<div class="page__content">
+			<div class="container">
+				<ul class="page__catalog js-sortable" >
+          {% for object in objects_list %}
+						{% if collection != 'all' %}
+							{% if object.collection_id == collection %}
+											<li class="page__catalog-unit" id="page__catalog-unit_17">
+							<a class="page__catalog-item" href="{% if is_product %}
+							{% url 'catalog:product_page' object.slug %}{% else %}{% url 'catalog:kit_page' object.slug %}{% endif %}">
+								<div class="page__catalog-item-img"><img src="{{ object.thumbnail.url }}"  width="304" height="228"></div>
+								<h3 class="page__catalog-item-title">{{ object.title }}</h3>
+								<div class="page__catalog-item-dscr">
+									{% if object.short_description %}{{ object.short_description }}{% endif %}
+									{% if object.price %}<div class="page__catalog-item-price rur">{{ object.price }}</div>{% endif %}
+								</div>
+							</a>
+							{% endif %}
+						{% else %}
+										<li class="page__catalog-unit" id="page__catalog-unit_17">
+						<a class="page__catalog-item" href="{% if is_product %}
+						{% url 'catalog:product_page' object.slug %}{% else %}{% url 'catalog:kit_page' object.slug %}{% endif %}">
+							<div class="page__catalog-item-img"><img src="{{ object.thumbnail.url }}" width="304" height="228"></div>
+							<h3 class="page__catalog-item-title">{{ object.title }}</h3>
+							<div class="page__catalog-item-dscr">
+								{% if object.short_description %}{{ object.short_description }}{% endif %}
+								{% if object.price %}<div class="page__catalog-item-price rur">{{ object.price }}</div>{% endif %}
+							</div>
+						</a>
+						{% endif %}
+          {% endfor %}
+									</ul>
+			</div>
+		</div>
+	</section>
+{% include 'catalog/footer.html' %}
+{% endblock %}
