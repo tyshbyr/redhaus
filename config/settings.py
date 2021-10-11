@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('DJANGO_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'redhaus.ru']
+ALLOWED_HOSTS = ['redhaus.ru']
 
 
 # Application definition
@@ -144,3 +144,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+    from .local_settings import*
+except ImportError:
+    print('Looks like no local file. You must be on production')
